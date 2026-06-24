@@ -8,9 +8,7 @@ on:
 
 jobs:
   build_test:
-
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-latest # VM env
     steps:
       - uses: actions/checkout@v7 # refer https://github.com/actions or https://github.com/marketplace?type=actions
       - name: Set up JDK 17
@@ -18,13 +16,13 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven # (simplifier of actions/cache@vX)  cache dependency for this job, so later jobs can reuse
+          cache: maven # (simplifier of actions/cache@vX)  cache dependency for this job, so later runs can reuse
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
   publish-job:
     runs-on: ubuntu-latest
-    needs: build_test # pre-condition job
+    needs: build_test # run if only job build_test succeeded
     steps:
       - uses: actions/checkout@v7
       - name: Set up JDK 17
@@ -33,8 +31,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - run: mvn --batch-mode --update-snapshots verify
-      - run: mkdir staging && cp target/*.jar staging
-      - uses: actions/upload-artifact@v7
+      - run: mkdir staging && cp target/*.jar staging # Creates a directory and copies JAR files into it
+      - uses: actions/upload-artifact@v7 # Uploads the contents of specific directory in VM to GitHub Actions Artifacts storage.
         with:
-          name: Package
+          name: output_package # any folder name in GitHub Actions Artifacts
           path: staging
