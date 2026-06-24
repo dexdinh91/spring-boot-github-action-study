@@ -1,27 +1,16 @@
 package com.example.github.action.demo.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     private Long id;
     private String name;
     private String phoneNo;
-
-    public User(Long id, String name, String phoneNo) {
-        this.id = id;
-        this.name = name;
-        this.phoneNo = phoneNo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPhoneNo() {
-        return phoneNo;
-    }
 
 }
