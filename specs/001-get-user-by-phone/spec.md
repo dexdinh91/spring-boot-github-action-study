@@ -73,7 +73,7 @@ Client provides a malformed phone string.
 - **FR-002**: If a user with the provided phone exists, the system MUST return a success response containing the full User domain.
 - **FR-003**: If no user exists with the provided phone, the system MUST return a clear not-found response.
 - **FR-004**: The system MUST validate the phone parameter and return a validation error for malformed input.
-- **FR-005**: Phone lookup SHOULD be normalized (trim, remove formatting characters) before matching.
+- **FR-005**: Phone lookup MUST be normalized (trim, remove formatting characters) before matching.
 - **FR-006**: The endpoint MUST not expose sensitive fields (e.g., passwords, security tokens) in the returned User domain.
 
 ### Key Entities

@@ -16,7 +16,7 @@
 
 **Purpose**: Project initialization and Spring Boot structure
 
-- [ ] T001 Ensure Spring Boot 3.5.x project structure exists with `src/main/java`, `src/test/java`, and `pom.xml`
+- [X] T001 Ensure Spring Boot 3.5.x project structure exists with `src/main/java`, `src/test/java`, and `pom.xml`
 - [ ] T002 [P] Verify Maven dependencies in `pom.xml` include: Spring Boot, Spring Data JPA, JUnit 5, Mockito
 - [ ] T003 [P] Configure application.properties or application.yml for database configuration (H2 for tests, PostgreSQL for production)
 - [ ] T004 [P] Verify linting and code style tools configured (CheckStyle, SpotBugs in Maven build)
@@ -29,7 +29,7 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T005 Create `PhoneNormalizer` utility class in `src/main/java/[package]/util/PhoneNormalizer.java` with:
+- [X] T005 Create `PhoneNormalizer` utility class in `src/main/java/[package]/util/PhoneNormalizer.java` with:
   - Static method `normalize(String phone): String`
   - Logic: strip spaces, dashes, parentheses, dots; keep leading +
   - Handle null/empty input gracefully
@@ -37,14 +37,14 @@
   - Add `@Column(unique = true)` annotation to phone field
   - Ensure phone field is NOT null
   - Add index: `@Index(name = "idx_user_phone", columnList = "phone")`
-- [ ] T007 [P] Create custom UserRepository method in `src/main/java/[package]/repository/UserRepository.java`:
+- [X] T007 [P] Create custom UserRepository method in `src/main/java/[package]/repository/UserRepository.java`:
   - Add `Optional<User> findByPhone(String normalizedPhone);`
   - This enables repository-level phone lookup
-- [ ] T008 Implement standardized error handling and response envelope in `src/main/java/[package]/api/ApiResponse.java`:
+- [X] T008 Implement standardized error handling and response envelope in `src/main/java/[package]/api/ApiResponse.java`:
   - Implement response wrapper with fields: status, code, message, data, timestamp
   - Create `@RestControllerAdvice` for global exception handling in `src/main/java/[package]/api/GlobalExceptionHandler.java`
   - Handle validation errors, not-found errors, and server errors with proper HTTP status codes
-- [ ] T009 [P] Add request/response logging configuration in `src/main/resources/application.properties`:
+- [X] T009 [P] Add request/response logging configuration in `src/main/resources/application.properties`:
   - Configure SLF4J with structured JSON logging
   - Ensure each request has unique request ID for traceability
 

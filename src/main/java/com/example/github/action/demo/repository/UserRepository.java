@@ -1,5 +1,6 @@
 package com.example.github.action.demo.repository;
 
+import com.example.github.action.demo.api.ResourceNotFoundException;
 import com.example.github.action.demo.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +21,14 @@ public class UserRepository {
         return findAll().stream()
                 .filter(user -> user.getId().equals(id))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new ResourceNotFoundException("User with ID " + id + " not found"));
     }
+
+    public User findByPhone(String normalizedPhone) {
+        return findAll().stream()
+                .filter(user -> user.getPhoneNo().equals(normalizedPhone))
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFoundException("User with phone number " + normalizedPhone + " not found"));
+    }
+
 }

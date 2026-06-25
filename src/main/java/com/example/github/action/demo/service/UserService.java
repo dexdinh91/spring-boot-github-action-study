@@ -1,5 +1,6 @@
 package com.example.github.action.demo.service;
 
+import com.example.github.action.demo.api.PhoneNormalizer;
 import com.example.github.action.demo.model.User;
 import com.example.github.action.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,9 @@ public class UserService {
 
     public User getUserById(Long id) {
         return userRepository.findById(id);
+    }
+
+    public User getUserByPhone(String normalizedPhone) {
+        return userRepository.findByPhone(PhoneNormalizer.normalize(normalizedPhone));
     }
 }

@@ -30,3 +30,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Common
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+.env*

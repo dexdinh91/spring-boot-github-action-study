@@ -3,10 +3,7 @@ package com.example.github.action.demo.controller;
 
 import com.example.github.action.demo.model.User;
 import com.example.github.action.demo.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +23,12 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id) {
+    public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
+    }
+
+    @GetMapping("/phone/{phone}")
+    public User getUserByPhone(@PathVariable String phone) {
+        return userService.getUserByPhone(phone);
     }
 }
