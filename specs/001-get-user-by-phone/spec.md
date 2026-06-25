@@ -8,6 +8,12 @@
 
 **Input**: User description: "I want to build an additional API which has format /users/phone=xxx to get the user by phone number, the output should be User domain, in the repository, you can create a dummy return"
 
+## Clarifications
+
+### Session 2026-06-25
+
+- Q: Should the endpoint return a single user or multiple users when phone is non-unique? → A: Phone is unique: endpoint returns a single User (200)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Retrieve user by phone (Priority: P1)
@@ -57,7 +63,7 @@ Client provides a malformed phone string.
 
 - Empty phone parameter (e.g., `/users/phone=`) — return 400 with validation error.
 - Phone with international prefixes and formatting differences — normalization expected before lookup.
-- Multiple accounts sharing the same phone (if allowed by domain) — define business rule (current assumption: phone is unique per user).
+- Multiple accounts sharing the same phone — NOT allowed; phone is unique per user; endpoint returns a single User.
 
 ## Requirements *(mandatory)*
 
