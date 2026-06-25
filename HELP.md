@@ -17,7 +17,7 @@ I.e: /speckit.constitution Create principles focused on code quality, testing st
 # Create the spec
 Use the /speckit.specify agent to describe what you want to build. Focus on the what and why, not the tech stack.
 
-I.e: /speckit.specify I want to build an additional API which has format /users/phone=xxx to get the user by phone number, the output should be User domain,
+I.e: /speckit.specify I want to build an additional API which has format /users/phone/xxx to get the user by phone number, the output should be User domain,
 in the repository, you can create a dummy return.
 => output:
 - .specify/feature.json -> state file that Spec Kit uses to follow the current feature which is processing
