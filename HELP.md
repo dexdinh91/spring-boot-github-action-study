@@ -28,10 +28,9 @@ And no code was implemented (you can enrich spec.md later)
 # Remove ambiguity
 Use the /speckit.clarify agent to review the generated spec.md, finds ambiguous or missing requirements, and asks you targeted questions before moving on to implementation planning
 
-I.e: /speckit.clarify review \specs\001-get-user-by-phone\spec.md and make updated on this file
+I.e: /speckit.clarify review \specs\001-get-user-by-phone\spec.md -> output letter (A/B/C/...) to choose then we can continue prompt
 => output: 
 spec.md is updated
-
 
 # Create a technical implementation plan
 Use the /speckit.plan command to provide your tech stack and architecture choices.

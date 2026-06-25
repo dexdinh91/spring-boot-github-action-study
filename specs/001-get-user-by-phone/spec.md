@@ -12,7 +12,7 @@
 
 ### Session 2026-06-25
 
-- Q: Should the endpoint return a single user or multiple users when phone is non-unique? → A: Phone is unique: endpoint returns a single User (200)
+- Q: Should the endpoint return a single user or multiple users when phone is non-unique? → A: Phone is unique: endpoint returns a single User (200)
 
 ## User Scenarios & Testing *(mandatory)*
 
