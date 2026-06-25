@@ -54,11 +54,11 @@
 
 ## Phase 3: User Story 1 - Retrieve User by Phone (Priority: P1) 🎯 MVP
 
-**Goal**: Implement `GET /users/phone={phone}` endpoint to retrieve a user by phone number with proper validation and success handling
+**Goal**: Implement `GET /users/phone/{phone}` endpoint to retrieve a user by phone number with proper validation and success handling
 
 **Independent Test**: 
 ```bash
-curl -X GET "http://localhost:8080/users/phone=%2B12345678901"
+curl -X GET "http://localhost:8080/users/phone/%2B12345678901"
 # Expected: 200 OK with User domain in standardized response envelope
 ```
 
@@ -91,7 +91,7 @@ curl -X GET "http://localhost:8080/users/phone=%2B12345678901"
   - Implementation: normalize phone using `PhoneNormalizer.normalize()`, call repository, throw exception if not found
   - Keep method under 20 lines
 - [ ] T016 [US1] Create UserController endpoint in `src/main/java/[package]/api/UserController.java`:
-  - Add method: `@GetMapping("/users/phone={phone}")`
+  - Add method: `@GetMapping("/users/phone/{phone}")`
   - Implementation: call `userService.findByPhone()`, wrap response in ApiResponse envelope
   - Verify response status is 200 for success
 - [ ] T017 [US1] Add validation to UserController endpoint:
@@ -114,7 +114,7 @@ curl -X GET "http://localhost:8080/users/phone=%2B12345678901"
 
 **Independent Test**:
 ```bash
-curl -X GET "http://localhost:8080/users/phone=%2B19999999999"
+curl -X GET "http://localhost:8080/users/phone/%2B19999999999"
 # Expected: 404 Not Found with message "User with phone +19999999999 not found"
 ```
 
@@ -158,11 +158,11 @@ curl -X GET "http://localhost:8080/users/phone=%2B19999999999"
 **Independent Test**:
 ```bash
 # Invalid format
-curl -X GET "http://localhost:8080/users/phone=not-a-phone"
+curl -X GET "http://localhost:8080/users/phone/not-a-phone"
 # Expected: 400 Bad Request with field error explaining required format
 
 # Empty phone
-curl -X GET "http://localhost:8080/users/phone="
+curl -X GET "http://localhost:8080/users/phone/"
 # Expected: 400 Bad Request with message "Phone is required"
 ```
 
@@ -233,7 +233,7 @@ curl -X GET "http://localhost:8080/users/phone="
   - Optimize queries: verify no N+1 queries, proper eager loading
   - Optimize normalization: cache if needed (unlikely for single lookup)
 - [ ] T038 Documentation updates in `docs/` or `README.md`:
-  - Document endpoint: `GET /users/phone={phone}`
+  - Document endpoint: `GET /users/phone/{phone}`
   - Document phone format requirements (7-15 digits, optional +)
   - Document response envelope structure (from ApiResponse)
   - Reference: specs/001-get-user-by-phone/contracts/user-phone-endpoint.md
@@ -270,7 +270,7 @@ curl -X GET "http://localhost:8080/users/phone="
 - **User Story 2 (P2)**: Can start after Foundational (Phase 2) - May enhance US1 (both use same endpoint)
 - **User Story 3 (P3)**: Can start after Foundational (Phase 2) - May enhance US1 & US2 (all use same endpoint)
 
-**Note**: In this feature, all three user stories enhance the same `GET /users/phone={phone}` endpoint. They are independent in terms of testing but share the same code. Implementation order: US1 (success path) → US2 (not-found error path) → US3 (validation error path).
+**Note**: In this feature, all three user stories enhance the same `GET /users/phone/{phone}` endpoint. They are independent in terms of testing but share the same code. Implementation order: US1 (success path) → US2 (not-found error path) → US3 (validation error path).
 
 ### Within Each User Story
 
@@ -317,7 +317,7 @@ Order: A completes Phase 2 → B writes all tests → A/B implement US1/2/3 → 
 4. **STOP and VALIDATE**: 
    ```bash
    mvn verify
-   curl -X GET "http://localhost:8080/users/phone=%2B12345678901"
+   curl -X GET "http://localhost:8080/users/phone/%2B12345678901"
    ```
 5. Deploy/demo if ready (working endpoint for successful lookup)
 
@@ -349,7 +349,7 @@ Each story builds on previous; each remains testable independently.
 - [ ] No new warnings introduced
 
 **MVP Checkpoint (after US1)**:
-- Endpoint works: `curl -X GET "http://localhost:8080/users/phone=%2B12345678901"`
+- Endpoint works: `curl -X GET "http://localhost:8080/users/phone/%2B12345678901"`
 - Test passes: `mvn clean verify` - all US1 tests pass
 - Coverage >85% for: PhoneNormalizer, UserService, UserController, UserRepository
 - Ready to commit and deploy

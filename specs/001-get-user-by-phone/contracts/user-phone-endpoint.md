@@ -1,6 +1,6 @@
 # REST API Contract: Get User by Phone
 
-**Endpoint**: `GET /users/phone={phone}`  
+**Endpoint**: `GET /users/phone/{phone}`  
 **Feature**: Retrieve a user by phone number lookup  
 **API Version**: v1 (stable)  
 **Status**: New endpoint (Spring Boot GET)  
@@ -10,7 +10,7 @@
 ### HTTP Method & Path
 
 ```
-GET /users/phone={phone}
+GET /users/phone/{phone}
 ```
 
 ### Path/Query Parameters
@@ -20,9 +20,9 @@ GET /users/phone={phone}
 | `phone` | String | Yes | Query param or path | Phone number in any format (spaces, dashes, parentheses allowed; will be normalized) |
 
 **Example requests**:
-- `GET /users/phone=+12345678901`
-- `GET /users/phone=+1%20(234)%20567-8901` (URL-encoded: `+1 (234) 567-8901`)
-- `GET /users/phone=234-567-8901`
+- `GET /users/phone/+12345678901`
+- `GET /users/phone/+1%20(234)%20567-8901` (URL-encoded: `+1 (234) 567-8901`)
+- `GET /users/phone/234-567-8901`
 
 ### Request Headers
 
@@ -175,7 +175,7 @@ None (GET request).
 
 **Request**:
 ```
-GET /users/phone=+12345678901
+GET /users/phone/+12345678901
 ```
 
 **Response** (200):
@@ -201,7 +201,7 @@ GET /users/phone=+12345678901
 
 **Request**:
 ```
-GET /users/phone=+19999999999
+GET /users/phone/+19999999999
 ```
 
 **Response** (404):
@@ -219,7 +219,7 @@ GET /users/phone=+19999999999
 
 **Request**:
 ```
-GET /users/phone=not-a-phone
+GET /users/phone/not-a-phone
 ```
 
 **Response** (400):

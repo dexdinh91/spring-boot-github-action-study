@@ -6,7 +6,7 @@
 
 ## Summary
 
-Extend the Spring Boot user management API with a phone-based lookup endpoint. Implement `GET /users/phone={phone}` to retrieve a single User domain object by phone number with proper validation and error handling. Use existing repository pattern to query by phone, ensuring consistency with project architecture.
+Extend the Spring Boot user management API with a phone-based lookup endpoint. Implement `GET /users/phone/{phone}` to retrieve a single User domain object by phone number with proper validation and error handling. Use existing repository pattern to query by phone, ensuring consistency with project architecture.
 
 ## Technical Context
 
@@ -53,7 +53,7 @@ Extend the Spring Boot user management API with a phone-based lookup endpoint. I
 - ✅ Use @DataJpaTest for repository layer testing
 
 **User Experience Consistency & API Design**:
-- ✅ Endpoint follows RESTful conventions: GET /users/phone={phone}
+- ✅ Endpoint follows RESTful conventions: GET /users/phone/{phone}
 - ✅ Response must use standardized envelope format (status, code, message, data, timestamp)
 - ✅ Error responses must include clear, actionable error messages (not stack traces)
 - ✅ Use appropriate HTTP status codes (200, 400, 404, 500)
@@ -90,7 +90,7 @@ specs/001-get-user-by-phone/
 ```text
 src/main/java/[package]/
 ├── controller/
-│   ├── UserController.java              # Add GET /users/phone={phone}
+│   ├── UserController.java              # Add GET /users/phone/{phone}
 ├── service/
 │   ├── UserService.java                 # Add findByPhone(String phone) method
 │   └── PhoneNormalizer.java             # Phone normalization utility

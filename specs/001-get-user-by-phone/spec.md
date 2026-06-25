@@ -6,7 +6,7 @@
 
 **Status**: Draft
 
-**Input**: User description: "I want to build an additional API which has format /users/phone=xxx to get the user by phone number, the output should be User domain, in the repository, you can create a dummy return"
+**Input**: User description: "I want to build an additional API which has format /users/phone/xxx to get the user by phone number, the output should be User domain, in the repository, you can create a dummy return"
 
 ## Clarifications
 
@@ -18,15 +18,15 @@
 
 ### User Story 1 - Retrieve user by phone (Priority: P1)
 
-An API consumer (internal service or client) requests user information by providing a phone number in the path `/users/phone=xxx`.
+An API consumer (internal service or client) requests user information by providing a phone number in the path `/users/phone/xxx`.
 
 **Why this priority**: Primary business need is to locate a user by phone (commonly used lookup).
 
-**Independent Test**: Call `GET /users/phone=+1234567890` and verify the response contains the User domain object for that phone number.
+**Independent Test**: Call `GET /users/phone/+1234567890` and verify the response contains the User domain object for that phone number.
 
 **Acceptance Scenarios**:
 
-1. **Given** a user exists with phone `+1234567890`, **When** the client calls `GET /users/phone=+1234567890`, **Then** the API returns 200 with the User domain in the response.
+1. **Given** a user exists with phone `+1234567890`, **When** the client calls `GET /users/phone/+1234567890`, **Then** the API returns 200 with the User domain in the response.
 2. **Given** multiple users with different phones, **When** a phone lookup is performed, **Then** exactly the user matching the provided phone is returned.
 
 ---
@@ -37,7 +37,7 @@ Client requests a phone that does not exist.
 
 **Why this priority**: Important for correct client behavior and error handling.
 
-**Independent Test**: Call `GET /users/phone=+0000000000` and verify a 404 (or appropriate not-found response) with a clear message.
+**Independent Test**: Call `GET /users/phone/+0000000000` and verify a 404 (or appropriate not-found response) with a clear message.
 
 **Acceptance Scenarios**:
 
@@ -51,7 +51,7 @@ Client provides a malformed phone string.
 
 **Why this priority**: Ensures input validation and avoids ambiguous lookups.
 
-**Independent Test**: Call `GET /users/phone=invalid-phone` and verify a 400 (bad request) with a validation error explaining the expected phone format.
+**Independent Test**: Call `GET /users/phone/invalid-phone` and verify a 400 (bad request) with a validation error explaining the expected phone format.
 
 **Acceptance Scenarios**:
 
@@ -61,7 +61,7 @@ Client provides a malformed phone string.
 
 ### Edge Cases
 
-- Empty phone parameter (e.g., `/users/phone=`) — return 400 with validation error.
+- Empty phone parameter (e.g., `/users/phone/`) — return 400 with validation error.
 - Phone with international prefixes and formatting differences — normalization expected before lookup.
 - Multiple accounts sharing the same phone — NOT allowed; phone is unique per user; endpoint returns a single User.
 
@@ -69,7 +69,7 @@ Client provides a malformed phone string.
 
 ### Functional Requirements
 
-- **FR-001**: Provide an endpoint `GET /users/phone={phone}` that returns the User domain for the matching phone number.
+- **FR-001**: Provide an endpoint `GET /users/phone/{phone}` that returns the User domain for the matching phone number.
 - **FR-002**: If a user with the provided phone exists, the system MUST return a success response containing the full User domain.
 - **FR-003**: If no user exists with the provided phone, the system MUST return a clear not-found response.
 - **FR-004**: The system MUST validate the phone parameter and return a validation error for malformed input.

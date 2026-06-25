@@ -1,7 +1,7 @@
 # Quickstart: Get User by Phone
 
 **Feature**: Retrieve a user by phone number via REST API  
-**Endpoint**: `GET /users/phone={phone}`  
+**Endpoint**: `GET /users/phone/{phone}`  
 **Framework**: Spring Boot 3.5.x with Spring Web MVC  
 
 ## Prerequisites
@@ -34,7 +34,7 @@ Expected: Application starts on http://localhost:8080 (or configured port).
 ### 3. Verify the endpoint is live
 
 ```bash
-curl -s http://localhost:8080/users/phone=+12345678901 | jq .
+curl -s http://localhost:8080/users/phone/+12345678901 | jq .
 ```
 
 Expected response (if user exists):
@@ -62,7 +62,7 @@ Expected response (if user exists):
 
 ```bash
 # Test: User exists with phone +12345678901
-curl -X GET "http://localhost:8080/users/phone=%2B12345678901" \
+curl -X GET "http://localhost:8080/users/phone/%2B12345678901" \
   -H "Content-Type: application/json"
 
 # Expected: 200 OK with User data in response
@@ -72,7 +72,7 @@ curl -X GET "http://localhost:8080/users/phone=%2B12345678901" \
 
 ```bash
 # Test: No user with phone +19999999999
-curl -X GET "http://localhost:8080/users/phone=%2B19999999999" \
+curl -X GET "http://localhost:8080/users/phone/%2B19999999999" \
   -H "Content-Type: application/json"
 
 # Expected: 404 Not Found with message "User with phone +19999999999 not found"
@@ -82,7 +82,7 @@ curl -X GET "http://localhost:8080/users/phone=%2B19999999999" \
 
 ```bash
 # Test: Invalid phone format
-curl -X GET "http://localhost:8080/users/phone=not-a-phone" \
+curl -X GET "http://localhost:8080/users/phone/not-a-phone" \
   -H "Content-Type: application/json"
 
 # Expected: 400 Bad Request with field error indicating invalid format
@@ -92,7 +92,7 @@ curl -X GET "http://localhost:8080/users/phone=not-a-phone" \
 
 ```bash
 # Test: Empty phone (URL-encoded empty string)
-curl -X GET "http://localhost:8080/users/phone=" \
+curl -X GET "http://localhost:8080/users/phone/" \
   -H "Content-Type: application/json"
 
 # Expected: 400 Bad Request with error "Phone is required"
@@ -102,7 +102,7 @@ curl -X GET "http://localhost:8080/users/phone=" \
 
 ```bash
 # Test: Phone with formatting (spaces, dashes, parentheses)
-curl -X GET "http://localhost:8080/users/phone=%2B1%20%28234%29%20567-8901" \
+curl -X GET "http://localhost:8080/users/phone/%2B1%20%28234%29%20567-8901" \
   -H "Content-Type: application/json"
 # Decoded: +1 (234) 567-8901
 

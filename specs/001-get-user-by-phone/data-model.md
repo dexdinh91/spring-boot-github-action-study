@@ -84,11 +84,11 @@ User status is independent of phone lookup; phone is immutable once set (except 
 ### Request
 
 ```json
-GET /users/phone={phone}
+GET /users/phone/{phone}
 
 Query parameters:
 - phone (required, string): Phone number in any format (will be normalized)
-  Example: /users/phone=+1234567890 or /users/phone=234-567-8901
+  Example: /users/phone/1234567890 or /users/phone/234-567-8901
 ```
 
 ### Response (Success - 200)
