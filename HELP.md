@@ -35,10 +35,17 @@ spec.md is updated
 # Create a technical implementation plan
 Use the /speckit.plan command to provide your tech stack and architecture choices.
 
-
+I.e: /speckit.plan use the current architecture in this project: Spring boot maven project, which includes layers: controller, service, repository, domain
+=> output: 
+plan.md -> Implementation plan with Spring Boot architecture, technical context, and constitution check
+data-model.md -> Domain model and validation rules
+user-phone-endpoint.md -> api contract
+quickstart.md -> Validation guide with runnable commands
 
 # Break down into tasks
 Use /speckit.tasks to create an actionable task list from your implementation plan.
+
+I.e: /speckit.tasks 
 
 # Execute implementation
 Use /speckit.implement to execute all tasks and build your feature according to the plan.
